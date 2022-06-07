@@ -55,7 +55,7 @@ function stream(req: any, res: any, template: string) {
     onAllReady() {
       console.log("stream - onAllReady");
       if (!didError) {
-        res.end(htmlParts[1]);
+        res.write(htmlParts[1]);
       }
     },
     onError(err) {
