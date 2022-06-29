@@ -2,7 +2,7 @@ const fs = require("fs");
 const path = require("path");
 const express = require("express");
 
-const template = fs.readFileSync(path.resolve("../index.html"), "utf-8");
+const template = fs.readFileSync(path.resolve(path.join(__dirname, "../index.html")), "utf-8");
 
 async function createServer() {
   const app = express();

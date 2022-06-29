@@ -1,4 +1,4 @@
-import React from "react";
+import styles from "./Delay.module.css";
 import useAsync from "../hooks/useAsync";
 
 type Props = {
@@ -16,7 +16,9 @@ const Delay = (props: Props) => {
     return { delay: props.delay };
   });
 
-  return <div>{JSON.stringify(data)}</div>;
+  console.log(styles);
+
+  return <div className={styles.container}>{JSON.stringify(data)}</div>;
 };
 
 export default Delay;

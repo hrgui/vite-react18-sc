@@ -3,6 +3,10 @@ Object.defineProperties(exports, { __esModule: { value: true }, [Symbol.toString
 var server = require("react-dom/server");
 var react = require("react");
 var jsxRuntime = require("react/jsx-runtime");
+const container = "_container_1cbuf_1";
+var styles = {
+  container
+};
 const cache = {};
 function useAsync(key, fetcher) {
   if (!cache[key]) {
@@ -32,7 +36,9 @@ const Delay = (props) => {
       delay: props.delay
     };
   });
+  console.log(styles);
   return /* @__PURE__ */ jsxRuntime.jsx("div", {
+    className: styles.container,
     children: JSON.stringify(data)
   });
 };
