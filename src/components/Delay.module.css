@@ -1,4 +1,6 @@
 .container {
   font-family: sans-serif;
   background: red;
+  color: white;
+  padding: 16px;
 }

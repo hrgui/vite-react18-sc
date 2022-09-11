@@ -2,6 +2,7 @@ const fs = require("fs");
 const path = require("path");
 const express = require("express");
 const { createServer: createViteServer } = require("vite");
+const port = process.env.PORT || 3000;
 
 async function createServer() {
   const app = express();
@@ -18,13 +19,13 @@ async function createServer() {
   // use vite's connect instance as middleware
   app.use(vite.middlewares);
 
+  // 1. Read index.html
+  let template = fs.readFileSync(path.resolve(__dirname, "index.html"), "utf-8");
+
   app.use("*", async (req, res, next) => {
     const url = req.originalUrl;
 
     try {
-      // 1. Read index.html
-      let template = fs.readFileSync(path.resolve(__dirname, "index.html"), "utf-8");
-
       // 2. Apply Vite HTML transforms. This injects the Vite HMR client, and
       //    also applies HTML transforms from Vite plugins, e.g. global preambles
       //    from @vitejs/plugin-react
@@ -50,7 +51,9 @@ async function createServer() {
     }
   });
 
-  app.listen(3000);
+  app.listen(port, () => {
+    console.log(`Example Vite SSR Server running at port ${port}. Visit http://localhost:${port}`);
+  });
 }
 
 createServer();

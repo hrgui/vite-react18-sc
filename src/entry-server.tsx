@@ -42,6 +42,8 @@ function stream(req: any, res: any, template: string) {
   res.setHeader("Content-type", "text/html");
   res.write(htmlParts[0]);
 
+  console.log(htmlParts[1]);
+
   const stream = renderToPipeableStream(<App />, {
     onShellReady() {
       console.log("stream - onShellReady");
