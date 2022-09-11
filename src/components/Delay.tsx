@@ -1,5 +1,14 @@
 import styles from "./Delay.module.css";
-import useAsync from "../hooks/useAsync";
+import { createFetchStore } from "react-suspense-fetch";
+
+const store = createFetchStore(async (delay: number) => {
+  await wait(delay);
+  return { delay };
+});
+
+store.prefetch(1250);
+store.prefetch(2500);
+store.prefetch(5000);
 
 type Props = {
   delay: number;
@@ -10,13 +19,7 @@ function wait(time: number) {
 }
 
 const Delay = (props: Props) => {
-  const data = useAsync(props.delay + "", async () => {
-    await wait(props.delay);
-
-    return { delay: props.delay };
-  });
-
-  console.log(styles);
+  const data = store.get(props.delay);
 
   return <div className={styles.container}>{JSON.stringify(data)}</div>;
 };

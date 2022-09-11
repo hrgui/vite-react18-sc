@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import Delay from "./components/Delay";
 
 function Loading() {
-  return <div>Loading</div>;
+  return <div style={{ fontFamily: "sans-serif" }}>Loading</div>;
 }
 
 function App() {
